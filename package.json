@@ -1,0 +1,23 @@
+{
+  "name": "types-bootstrap-table",
+  "version": "1.0.0",
+  "description": "bootstrap-table typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChobitsSP/types-bootstrap-table.git"
+  },
+  "author": "Chobits",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChobitsSP/types-bootstrap-table/issues"
+  },
+  "homepage": "https://github.com/ChobitsSP/types-bootstrap-table#readme",
+  "devDependencies": {
+    "@types/jquery": "^3.3.4",
+    "typescript": "^2.6.2"
+  }
+}

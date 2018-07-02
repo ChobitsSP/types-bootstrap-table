@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "lib": [
+      "dom",
+      "es5",
+      "es2015.promise",
+      "es2016.array.include",
+      "es2017",
+      "es2017.object"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
