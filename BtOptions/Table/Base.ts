@@ -1,9 +1,10 @@
-import { Event } from "jquery";
+import { ColumnOptions } from "../Column/Index";
+import ClassStyle from "../ClassStyle";
 
 /**
  * The table options are defined in jQuery.fn.bootstrapTable.defaults.
  */
-export interface TableOptions<T> {
+export default interface TableOptions<T> {
   /**
    * The class name of table.
    * By default, the table is bordered,
@@ -268,8 +269,8 @@ export interface TableOptions<T> {
   uniqueId?: string;
   cardView?: boolean;
   detailView?: boolean;
-  detailFormatter?: Function;
-  detailFilter?: Function;
+  detailFormatter?: (index: number, row: T, element) => string;
+  detailFilter?: (index: number, row: T) => boolean;
   searchAlign?: string;
   buttonsAlign?: string;
   toolbarAlign?: string;
@@ -305,28 +306,6 @@ export interface TableOptions<T> {
   customSort?: Function;
   locale?: string;
   footerStyle?: Function;
-
-  /**
-   * https://github.com/wenzhixin/bootstrap-table/tree/master/src/extensions/filter-control
-   */
-  filterControl?: boolean;
-
-  filterShowClear?: boolean;
-
-  /**
-   * https://github.com/wenzhixin/bootstrap-table/tree/master/src/extensions/export
-   */
-  showExport?: boolean;
-
-  /**
-   * export data type, support: 'basic', 'all', 'selected'.
-   */
-  exportDataType?: "basic" | "all" | "selected";
-
-  /**
-   * export types, support types: 'json', 'xml', 'png', 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'.
-   */
-  exportTypes?: ExportType[];
 }
 
 type ButtonsClass =
@@ -337,201 +316,6 @@ type ButtonsClass =
   | "success"
   | "info"
   | "link";
-
-type ExportType =
-  | "json"
-  | "xml"
-  | "png"
-  | "csv"
-  | "txt"
-  | "sql"
-  | "doc"
-  | "excel"
-  | "xlsx"
-  | "pdf";
-
-/**
- * The column options is defined in jQuery.fn.bootstrapTable.columnDefaults.
- */
-export interface ColumnOptions<T> {
-  /**
-   * True to show a radio. The radio column has fixed width.
-   */
-  radio?: boolean;
-
-  /**
-   * True to show a checkbox. The checkbox column has fixed width.
-   */
-  checkbox?: boolean;
-
-  /**
-   * The column field name.
-   */
-  field?: string;
-
-  /**
-   * The column title text.
-   */
-  title?: string;
-
-  /**
-   * The column title tooltip text. This option also support the title HTML attribute.
-   */
-  titleTooltip?: string;
-
-  /**
-   * The column class name.
-   */
-  ["class"]?: string;
-
-  /**
-   * Indicate how many rows a cell should take up.
-   */
-  rowspan?: number;
-
-  /**
-   * Indicate how many columns a cell should take up.
-   */
-  colspan?: number;
-
-  /**
-   * Indicate how to align the column data. 'left', 'right', 'center' can be used.
-   */
-  align?: "left" | "right" | "center";
-
-  /**
-   * Indicate how to align the table header. 'left', 'right', 'center' can be used.
-   */
-  halign?: "left" | "right" | "center";
-
-  /**
-   * Indicate how to align the table footer. 'left', 'right', 'center' can be used.
-   */
-  falign?: "left" | "right" | "center";
-
-  /**
-   * Indicate how to align the cell data. 'top', 'middle', 'bottom' can be used.
-   */
-  valign?: "top" | "middle" | "bottom";
-
-  /**
-   * The width of column. If not defined, the width will auto expand to fit its contents.
-   * Though if the table is left responsive and sized too small this 'width' might be ignored (use min/max-width via class or such then). Also you can add '%' to your number and the bootstrapTable will use the percentage unit, otherwise, leave as number (or add 'px') to make it use pixels.
-   */
-  width?: number | string;
-
-  /**
-   * True to allow the column can be sorted.
-   */
-  sortable?: boolean;
-
-  /**
-   * The default sort order, can only be 'asc' or 'desc'.
-   */
-  order?: "asc" | "desc";
-
-  /**
-   * False to hide the columns item.
-   */
-  visible?: boolean;
-
-  /**
-   * False to hide the columns item in card view state.
-   */
-  cardVisible?: boolean;
-
-  /**
-   * False to disable the switchable of columns item.
-   */
-  switchable?: boolean;
-
-  /**
-   * True to select checkbox or radio when the column is clicked.
-   */
-  clickToSelect?: boolean;
-
-  /**
-   * The context (this) is the column Object.
-   * The cell formatter function, take three parameters
-   */
-  formatter?: (value, row: T, index: number, field: string) => any;
-
-  /**
-   * The context (this) is the column Object.
-   * the function should return a string with the text to show in the footer cell.
-   * data: Array of all the data rows.
-   */
-  footerFormatter?: (data: T[]) => string;
-
-  /**
-   * The cell events listener when you use formatter function
-   * event: the jQuery event.
-   * value: the field value.
-   */
-  events?: { [id: string]: (e: Event, value, row: T, index: number) => void };
-
-  /**
-   * The custom field sort function that used to do local sorting
-   */
-  sorter?: (val1, val2, row1: T, row2: T) => void;
-
-  /**
-   * Provide a customizable sort-name, not the default sort-name in the header,
-   * or the field name of the column.
-   * For example, a column might display the value of fieldName of "html"
-   * such as "<b><span style="color:red">abc</span></b>",
-   * but a fieldName to sort is "content" with the value of "abc".
-   */
-  sortName?: string;
-
-  /**
-   * The cell style formatter function
-   */
-  cellStyle?: (value, row: T, index: number, field: string) => ClassStyle;
-
-  /**
-   * True to search data for this column.
-   */
-  searchable?: boolean;
-
-  /**
-   * True to search use formatted data.
-   */
-  searchFormatter?: boolean;
-
-  /**
-   * Escapes a string for insertion into HTML, replacing &, <, >, ", \`, and ' characters.
-   */
-  escape?: boolean;
-
-  /**
-   * True to show the title of column with 'radio' or 'singleSelect' 'checkbox' option.
-   */
-  showSelectTitle?: boolean;
-
-  /**
-   * Set input: show an input control,
-   * select: show a select control,
-   * datepicker: show a datepicker control.
-   */
-  filterControl?: "input" | "select" | "datepicker";
-
-  /**
-   * Set custom select filter values,
-   * use var:variable to load from a variable
-   * or url:http://www.example.com/data.json to load from a remote json file
-   * or jso:{key:data} to load from a json string.
-   */
-  filterData?: string;
-}
-
-/**
- * classes or css
- */
-interface ClassStyle {
-  classes?: string;
-  css?: object;
-}
 
 export interface AjaxParams<T> {
   data: QueryParams;
