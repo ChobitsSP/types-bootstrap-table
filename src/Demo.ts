@@ -6,7 +6,7 @@ interface RowModel {
   name: string;
 }
 
-export default function GetOptions(dom) {
+export default function InitTable(dom) {
   const options: TableOptions<RowModel> = {
     pagination: true,
     columns: [
@@ -18,6 +18,4 @@ export default function GetOptions(dom) {
   };
 
   $(dom).bootstrapTable(options);
-
-  return options;
 }
