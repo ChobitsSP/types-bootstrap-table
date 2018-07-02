@@ -1,3 +1,4 @@
+import $ from "jquery";
 import { TableOptions } from "./BtOptions";
 
 interface RowModel {
@@ -5,7 +6,7 @@ interface RowModel {
   name: string;
 }
 
-export default function GetOptions(vm) {
+export default function GetOptions(dom) {
   const options: TableOptions<RowModel> = {
     pagination: true,
     columns: [
@@ -15,5 +16,8 @@ export default function GetOptions(vm) {
       }
     ]
   };
+
+  $(dom).bootstrapTable(options);
+
   return options;
 }
