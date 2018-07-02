@@ -1,3 +1,5 @@
+import { Event } from "jquery";
+
 /**
  * The table options are defined in jQuery.fn.bootstrapTable.defaults.
  */
@@ -101,7 +103,7 @@ export interface TableOptions<T> {
   /**
    *
    */
-  ajax?: (params: AjaxParams) => Promise<void>;
+  ajax?: (params: AjaxParams<T>) => Promise<void>;
 
   /**
    * The method type to request remote data.
@@ -452,7 +454,7 @@ export interface ColumnOptions<T> {
    * event: the jQuery event.
    * value: the field value.
    */
-  events?: { [id: string]: (e, value, row: T, index: number) => void };
+  events?: { [id: string]: (e: Event, value, row: T, index: number) => void };
 
   /**
    * The custom field sort function that used to do local sorting
@@ -517,9 +519,9 @@ interface ClassStyle {
   css?: object;
 }
 
-export interface AjaxParams {
+export interface AjaxParams<T> {
   data: QueryParams;
-  success: (result: { total: number; rows: any[] }) => void;
+  success: (result: { total: number; rows: T[] }) => void;
 }
 
 export interface QueryParams {
@@ -534,7 +536,7 @@ export interface QueryParams {
   limit: number;
 
   /**
-   * 筛选json filter:"{"p1":"1"}"
+   * json string like: "{"p1":"1"}"
    */
   filter?: string;
 }
