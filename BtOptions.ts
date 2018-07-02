@@ -333,8 +333,20 @@ export interface TableOptions<T> {
   /**
    * export types, support types: 'json', 'xml', 'png', 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'.
    */
-  exportTypes?: string[];
+  exportTypes?: ExportType[];
 }
+
+type ExportType =
+  | "json"
+  | "xml"
+  | "png"
+  | "csv"
+  | "txt"
+  | "sql"
+  | "doc"
+  | "excel"
+  | "xlsx"
+  | "pdf";
 
 /**
  * The column options is defined in jQuery.fn.bootstrapTable.columnDefaults.
