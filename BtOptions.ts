@@ -66,14 +66,7 @@ export interface TableOptions<T> {
    * Defines the Bootstrap class (added after 'btn-') of table buttons:
    * EX: 'primary', 'danger', 'warning'...
    */
-  buttonsClass?:
-    | "default"
-    | "primary"
-    | "danger"
-    | "warning"
-    | "success"
-    | "info"
-    | "link";
+  buttonsClass?: ButtonsClass;
 
   /**
    * Defines icons used in the toolbar, pagination, and details view.
@@ -335,6 +328,15 @@ export interface TableOptions<T> {
    */
   exportTypes?: ExportType[];
 }
+
+type ButtonsClass =
+  | "default"
+  | "primary"
+  | "danger"
+  | "warning"
+  | "success"
+  | "info"
+  | "link";
 
 type ExportType =
   | "json"
