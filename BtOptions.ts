@@ -443,15 +443,16 @@ export interface ColumnOptions<T> {
   /**
    * The context (this) is the column Object.
    * the function should return a string with the text to show in the footer cell.
+   * data: Array of all the data rows.
    */
-  footerFormatter?: (data: any[]) => string;
+  footerFormatter?: (data: T[]) => string;
 
   /**
    * The cell events listener when you use formatter function
-   * @type {*}
-   * @memberof ColumnOptions
+   * event: the jQuery event.
+   * value: the field value.
    */
-  events?: any;
+  events?: { [id: string]: (e, value, row: T, index: number) => void };
 
   /**
    * The custom field sort function that used to do local sorting
