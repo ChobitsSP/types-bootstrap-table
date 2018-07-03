@@ -27,5 +27,10 @@ declare global {
      * Return selected rows, when no record selected, an empty array will return.
      */
     bootstrapTable<T>(method: "getSelections"): T[];
+
+    /**
+     * Destroy the bootstrap table.
+     */
+    bootstrapTable(method: "destroy");
   }
 }
